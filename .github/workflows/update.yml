@@ -1,0 +1,37 @@
+name: 自动更新实况数据
+
+on:
+  schedule:
+    # 每 1 小时自动运行一次 (分钟 小时 日 月 周)
+    - cron: '0 * * * *'
+  workflow_dispatch: # 允许手动点击按钮立即运行
+
+jobs:
+  update-weather:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 必须开启写入权限
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: 安装依赖
+        run: |
+          pip install selenium webdriver-manager
+
+      - name: 执行更新脚本
+        run: python weather_updater.py
+
+      - name: 提交并推送到仓库
+        run: |
+          git config --global user.name "WeatherBot"
+          git config --global user.email "bot@weather.com"
+          git add index.html
+          git commit -m "Auto Update: $(date +'%Y-%m-%d %H:%M:%S')" || exit 0
+          git push
