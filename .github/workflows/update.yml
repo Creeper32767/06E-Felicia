@@ -26,7 +26,7 @@ jobs:
           pip install selenium webdriver-manager
 
       - name: 执行更新脚本
-        run: python weather_updater.py
+        run: python autoupdate.py
 
       - name: 提交并推送到仓库
         run: |
