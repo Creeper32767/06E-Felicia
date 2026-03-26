@@ -122,7 +122,9 @@
             .nav-bar { padding: 0 15px; height: 60px; }
             .nav-logo { width: 35px; height: 35px; margin-right: 8px; }
             .nav-item { font-size: 12px; padding: 6px 8px; }
-            .nav-menus { overflow-x: auto; }
+            .nav-menus { 
+                overflow: visible !important; /* 确保下拉菜单可以溢出显示 */
+            }
             .nav-group { gap: 8px; white-space: nowrap; }
 
             .main-content { align-items: flex-start; padding: 15px; padding-bottom: 100px; }
