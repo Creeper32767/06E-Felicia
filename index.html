@@ -140,11 +140,17 @@
             .info-grid { gap: 15px; }
 
             /* 手机端对话框 & 悬浮图位置 */
-            .floating-display { width: 130px; bottom: 10px; left: 10px; }
+            .floating-display { width: 130px; bottom: 10px; left: auto; right: 10px;}
             .speech-bubble { 
-                left: 30px;    /* 手机端位置 */
+                left: auto;
+                right: 30px;
                 bottom: 220px; /* 手机端位置 */
                 font-size: 13px; max-width: 150px; 
+            }
+            
+            .speech-bubble::after {
+                left: auto;    /* 👈 取消左侧定位 */
+                right: 30px;   /* 👈 让小尾巴指向右侧的 Ao 酱 */
             }
         }
 
