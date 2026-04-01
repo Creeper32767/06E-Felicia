@@ -64,22 +64,38 @@
         /* 1. 头像容器定位 */
         .nav-logo-wrapper { position: relative; display: flex; align-items: center; }
 
-        /* 2. 专门为头像定制的巨大下拉菜单 */
+        /* 2. 专门为头像定制的透明玻璃感下拉菜单 */
         .nav-logo-wrapper .dropdown-menu.active { 
             display: block; 
-            min-width: 200px; /* 加宽菜单 */
-            padding: 15px 0;
-            top: 110%; /* 稍微下移 */
+            min-width: 220px; 
+            padding: 12px 0;
+            top: 115%; 
             left: 0;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8); /* 增强阴影 */
+            /* 核心修改：改为透明模糊背景 */
+            background: rgba(20, 20, 20, 0.6); 
+            backdrop-filter: blur(25px); 
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
         }
 
-        /* 3. 加大菜单项文字和间距 */
+        /* 3. 调整菜单项文字颜色与整体契合 */
         .nav-logo-wrapper .dropdown-menu a {
-            padding: 15px 25px;
-            font-size: 16px; /* 增大字体 */
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 14px 22px;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.85); /* 柔和的白色 */
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
         }
+
+        .nav-logo-wrapper .dropdown-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding-left: 28px; /* 增加一个悬停小动画 */
+        }
+
         .nav-logo-wrapper .dropdown-menu a:last-child { border-bottom: none; }
         /* --- 对话框 & 悬浮图 (默认电脑端) --- */
         .speech-bubble {
