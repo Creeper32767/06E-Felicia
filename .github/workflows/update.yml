@@ -28,7 +28,7 @@ jobs:
       - name: 执行更新脚本（实况 + 预警）
         run: |
           python autoupdate.py || true
-          python -c "import warning; warning.update_config()" || true
+          python warning.py || true
 
       - name: 提交并推送到仓库
         run: |
