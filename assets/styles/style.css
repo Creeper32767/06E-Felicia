@@ -472,11 +472,14 @@ body {
     }
 
     .nav-menus {
-        overflow-x: auto;
+        /* 关键修改：改为 visible 允许下拉菜单溢出，去掉横向滚动 */
+        overflow-x: visible; 
         overflow-y: visible;
-        scrollbar-width: none;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         gap: 10px;
-        -webkit-overflow-scrolling: touch;
+        flex: 1;
     }
 
     .nav-menus::-webkit-scrollbar {
@@ -484,7 +487,7 @@ body {
     }
 
     .nav-group {
-        gap: 6px;
+        gap: 5px;
         white-space: nowrap;
         min-width: max-content;
     }
