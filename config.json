@@ -49,16 +49,7 @@
             "海平面气压": "p"
         }
     },
-    "WARNING_CONFIG": {
-        "source_url": "https://weather.sz.gov.cn/qixiangfuwu/yujingfuwu/tufashijianyujing/index.html",
-        "city_selector_class": "tit fl tit_sz",
-        "request_timeout": 20,
-        "refresh_interval": 600,
-        "headers": {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-        }
-    },
     "LOG_CONFIG": {
-        "error_log": "logs/err.log"
+        "error_log": "/logs/err.log"
     }
 }

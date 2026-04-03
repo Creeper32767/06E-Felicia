@@ -10,11 +10,57 @@ from webdriver_manager.chrome import ChromeDriverManager
 from updater_common import load_config, log_error, save_config
 
 
+def _safe_int(value, default):
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return default
+
+
+def _safe_find_text(element, class_name):
+    try:
+        return element.find_element(By.CLASS_NAME, class_name).text.strip()
+    except Exception:
+        return ""
+
+
+def _extract_live_data(items, settings, targets, max_items):
+    result = {}
+    required_keys = set(targets.values())
+
+    for index, item in enumerate(items):
+        if index >= max_items:
+            break
+
+        label_text = _safe_find_text(item, settings["label_class_name"])
+        if not label_text:
+            continue
+
+        target_key = targets.get(label_text)
+        if target_key and target_key not in result:
+            value_text = _safe_find_text(item, settings["value_class_name"])
+            if value_text:
+                result[target_key] = value_text
+
+        if "time" not in result:
+            desc_text = _safe_find_text(item, settings["desc_class_name"])
+            if desc_text:
+                result["time"] = desc_text.replace(settings["time_prefix"], "", 1).strip()
+
+        if "time" in result and required_keys.issubset(result.keys()):
+            break
+
+    return result
+
+
 def get_runtime_settings(config):
     auto_cfg = config.get("AUTOUPDATE_CONFIG", {})
     return {
         "source_url": auto_cfg.get("source_url", "https://smca.fun/#/"),
-        "wait_timeout": int(auto_cfg.get("wait_timeout", 15)),
+        "wait_timeout": _safe_int(auto_cfg.get("wait_timeout", 15), 15),
+        "page_load_timeout": _safe_int(auto_cfg.get("page_load_timeout", 30), 30),
+        "script_timeout": _safe_int(auto_cfg.get("script_timeout", 30), 30),
+        "max_items": _safe_int(auto_cfg.get("max_items", 200), 200),
         "targets": auto_cfg.get("targets", {}),
         "time_prefix": auto_cfg.get("time_prefix", "数据时间: "),
         "chrome_args": auto_cfg.get("chrome_args", []),
@@ -36,6 +82,10 @@ def fetch_smca(config, settings):
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=opt)
     
     try:
+        # Bound browser operations to prevent hang-like behavior.
+        driver.set_page_load_timeout(settings["page_load_timeout"])
+        driver.set_script_timeout(settings["script_timeout"])
+
         driver.get(settings["source_url"])
         wait = WebDriverWait(driver, settings["wait_timeout"])
         wait.until(
@@ -45,21 +95,9 @@ def fetch_smca(config, settings):
         )
         
         targets = settings["targets"]
-        res = {}
-        
-        # 获取所有数据项
+        # 获取所有数据项，限制扫描范围并在目标齐全后提前结束。
         items = driver.find_elements(By.CLASS_NAME, settings["item_class_name"])
-        for i in items:
-            try:
-                lbl = i.find_element(By.CLASS_NAME, settings["label_class_name"]).text.strip()
-                val = i.find_element(By.CLASS_NAME, settings["value_class_name"]).text.strip()
-                if lbl in targets:
-                    res[targets[lbl]] = val
-                if "time" not in res:
-                    desc = i.find_element(By.CLASS_NAME, settings["desc_class_name"]).text
-                    res["time"] = desc.replace(settings["time_prefix"], "").strip()
-            except Exception:
-                continue
+        res = _extract_live_data(items, settings, targets, settings["max_items"])
 
         if not res:
             log_error(

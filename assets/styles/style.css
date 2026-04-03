@@ -452,10 +452,11 @@ body {
         height: auto;
         min-height: 100vh;
         overflow-x: hidden;
+        background-attachment: scroll;
     }
 
     .nav-bar {
-        padding: 0 12px;
+        padding: 0 10px;
         gap: 10px;
         height: 62px;
     }
@@ -474,6 +475,8 @@ body {
         overflow-x: auto;
         overflow-y: visible;
         scrollbar-width: none;
+        gap: 10px;
+        -webkit-overflow-scrolling: touch;
     }
 
     .nav-menus::-webkit-scrollbar {
@@ -483,6 +486,7 @@ body {
     .nav-group {
         gap: 6px;
         white-space: nowrap;
+        min-width: max-content;
     }
 
     .dropdown>.nav-item {
@@ -495,8 +499,8 @@ body {
 
     .main-content {
         align-items: flex-start;
-        padding: 15px;
-        padding-bottom: 100px;
+        padding: 12px;
+        padding-bottom: 110px;
     }
 
     .weather-mega-card {
@@ -504,27 +508,30 @@ body {
         border-radius: 30px;
         width: 100%;
         max-width: none;
+        overflow: hidden;
     }
 
     .section {
-        padding: 30px 20px;
+        padding: 24px 16px;
     }
 
     .forecast-side {
         border-right: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        width: auto;
+        width: 100%;
         flex: none;
     }
 
     .live-side {
-        width: auto;
+        width: 100%;
         flex: none;
+        padding: 24px 16px;
     }
 
     .temp-row {
-        font-size: 45px;
+        font-size: clamp(36px, 11vw, 45px);
         margin-bottom: 20px;
+        gap: 10px;
     }
 
     .weather-icon {
@@ -537,28 +544,116 @@ body {
     }
 
     .info-grid {
-        gap: 15px;
+        gap: 12px;
+    }
+
+    .live-grid {
+        gap: 14px;
+    }
+
+    .item {
+        padding-left: 12px;
+        border-left-width: 2px;
+    }
+
+    .label {
+        font-size: 13px;
+    }
+
+    .update-time {
+        margin-top: 18px;
+        font-size: 11px;
     }
 
     /* 手机端对话框 & 悬浮图位置 */
     .floating-display {
-        width: 130px;
-        bottom: 10px;
+        width: clamp(96px, 28vw, 130px);
+        bottom: 8px;
         left: auto;
-        right: 10px;
+        right: 8px;
     }
 
     .speech-bubble {
         left: auto;
-        right: 30px;
-        bottom: 220px;
+        right: 12px;
+        bottom: 190px;
         font-size: 13px;
-        max-width: 150px;
+        max-width: min(56vw, 180px);
+        padding: 10px 14px;
     }
 
     .speech-bubble::after {
         left: auto;
-        right: 30px;
+        right: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-bar {
+        padding: 0 8px;
+        gap: 6px;
+    }
+
+    .nav-logo {
+        width: 36px;
+        height: 36px;
+    }
+
+    .nav-item {
+        font-size: 11px;
+        padding: 6px 8px;
+    }
+
+    .main-content {
+        padding: 10px;
+        padding-bottom: 92px;
+    }
+
+    .section,
+    .live-side {
+        padding: 18px 14px;
+    }
+
+    .weather-icon {
+        width: 86px;
+        height: 86px;
+    }
+
+    .temp-row {
+        font-size: 36px;
+        margin-bottom: 14px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .forecast-side .info-grid .item {
+        align-items: flex-start;
+        text-align: left;
+        border-left: 2px solid rgba(255, 255, 255, 0.15);
+        padding-left: 12px;
+    }
+
+    .val {
+        font-size: 18px;
+    }
+
+    .live-title {
+        font-size: 16px;
+    }
+
+    .floating-display {
+        width: 94px;
+        right: 6px;
+        bottom: 6px;
+    }
+
+    .speech-bubble {
+        right: 8px;
+        bottom: 130px;
+        max-width: 62vw;
+        font-size: 12px;
     }
 }
 
@@ -705,50 +800,84 @@ body {
 /* ✨ 巨型预警手机端适配 ✨ */
 @media (max-width: 768px) {
     .alert-overlay {
-        padding: 20px;
+        padding: 14px;
     }
 
     .alert-modal {
         width: 100%;
         max-width: none;
-        border-radius: 30px;
+        border-radius: 24px;
+        max-height: calc(100dvh - 28px);
     }
 
     .alert-header {
-        padding: 15px 20px;
+        padding: 14px 18px;
     }
 
     .alert-modal h2 {
-        font-size: 22px;
+        font-size: 20px;
+        letter-spacing: 1px;
     }
 
     /* 手机端改为上下布局 */
     .alert-main-body {
         flex-direction: column;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     /* 图片在手机端占据 40% 高度 */
     .alert-image-side {
-        flex: 0 0 40vh;
+        flex: 0 0 32vh;
         width: 100%;
+        min-height: 180px;
+        max-height: 300px;
     }
 
     .alert-text-side {
-        padding: 30px 25px;
+        padding: 20px 18px;
     }
 
     .alert-text-side p {
-        font-size: 17px;
+        font-size: 15px;
+        line-height: 1.7;
     }
 
     .alert-footer {
-        padding: 15px 25px;
+        padding: 12px 18px;
     }
 
     .alert-close-btn {
-        padding: 15px;
-        font-size: 17px;
-        border-radius: 15px;
+        padding: 13px;
+        font-size: 16px;
+        border-radius: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .alert-overlay {
+        padding: 10px;
+    }
+
+    .alert-modal {
+        border-radius: 20px;
+        max-height: calc(100dvh - 20px);
+    }
+
+    .alert-modal h2 {
+        font-size: 18px;
+    }
+
+    .alert-image-side {
+        flex: 0 0 26vh;
+        min-height: 140px;
+    }
+
+    .alert-text-side p {
+        font-size: 14px;
+    }
+
+    .alert-close-btn {
+        font-size: 15px;
     }
 }
