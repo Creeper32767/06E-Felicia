@@ -4,19 +4,19 @@
     },
     "MANUAL_CONFIG": {
         "low": "22°C",
-        "high": "28°C",
+        "high": "26°C",
         "humidity": "舒适",
-        "rainProb": "1mm",
-        "wind": "3-4级",
-        "dir": "东南风",
-        "icon": "assets/images/weather_icons/03.png",
+        "rainProb": "大到暴雨",
+        "wind": "阵风5-6级",
+        "dir": "不固定风向",
+        "icon": "assets/images/weather_icons/05.png",
         "bg": "assets/images/background.jpg"
     },
     "ALERT_CONFIG": {
-        "enabled": false,
-        "title": "Typhoon Emergency",
+        "enabled": true,
+        "title": "Storm Warning",
         "image": "assets/images/warnings/warning.png",
-        "message": "【深中气象】超强台风“伊蕾娜”已于今天19时前后在深圳大鹏半岛登陆，登陆时中心附近最大风力68m/s(大于17级)，中心最低气压895hpa。目前，其中心位于盐田区近海，正在以20-25km/h速度向西北移动，强度逐渐减弱。目前，我校正处于其西北眼墙中，已出现17级以上阵风和大暴雨。深中气象提醒，“伊雷娜”已成为深圳历史上影响最严重的台风。风眼过境期间将出现静风，切勿外出。请同学们欢度愚人节！"
+        "message": "【深中气象】4月4日凌晨，切变线推至广东沿海并静止，高空浅槽东移，对流系统将沿切变线激发并东移。预计明天上午，我校可能迎来一轮强对流过程，后可能有持续性降水，累计雨量可达大到暴雨局地大暴雨，雨时阵风可达6级。"
     },
     "AUTOUPDATE_CONFIG": {
         "source_url": "https://smca.fun/#/",
