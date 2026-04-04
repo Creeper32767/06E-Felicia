@@ -961,3 +961,72 @@ Stacktrace:
 
 
 
+[2026-04-04 17:01:34] autoupdate.fetch_smca
+ERROR: Message: timeout: Timed out receiving message from renderer: 28.976
+  (Session info: chrome=146.0.7680.164)
+Stacktrace:
+#0 0x560dd95cda6a <unknown>
+#1 0x560dd8fdcab5 <unknown>
+#2 0x560dd8fc43bb <unknown>
+#3 0x560dd8fc40a4 <unknown>
+#4 0x560dd8fc1deb <unknown>
+#5 0x560dd8fc276f <unknown>
+#6 0x560dd8fd17a0 <unknown>
+#7 0x560dd8feb4b7 <unknown>
+#8 0x560dd8ff1feb <unknown>
+#9 0x560dd8fc2ebf <unknown>
+#10 0x560dd8feb24b <unknown>
+#11 0x560dd9077ac6 <unknown>
+#12 0x560dd9022cbf <unknown>
+#13 0x560dd9023a81 <unknown>
+#14 0x560dd9593a64 <unknown>
+#15 0x560dd9596951 <unknown>
+#16 0x560dd958021e <unknown>
+#17 0x560dd959751e <unknown>
+#18 0x560dd9566be0 <unknown>
+#19 0x560dd95ba9b8 <unknown>
+#20 0x560dd95bab88 <unknown>
+#21 0x560dd95cc4de <unknown>
+#22 0x7f4e6f69caa4 <unknown>
+#23 0x7f4e6f729c6c <unknown>
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "/home/runner/work/06E-Felicia.github.io/06E-Felicia.github.io/auto_update/autoupdate.py", line 115, in fetch_smca
+    driver.get(settings["source_url"])
+  File "/opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 466, in get
+    self.execute(Command.GET, {"url": url})
+  File "/opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 446, in execute
+    self.error_handler.check_response(response)
+  File "/opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: timeout: Timed out receiving message from renderer: 28.976
+  (Session info: chrome=146.0.7680.164)
+Stacktrace:
+#0 0x560dd95cda6a <unknown>
+#1 0x560dd8fdcab5 <unknown>
+#2 0x560dd8fc43bb <unknown>
+#3 0x560dd8fc40a4 <unknown>
+#4 0x560dd8fc1deb <unknown>
+#5 0x560dd8fc276f <unknown>
+#6 0x560dd8fd17a0 <unknown>
+#7 0x560dd8feb4b7 <unknown>
+#8 0x560dd8ff1feb <unknown>
+#9 0x560dd8fc2ebf <unknown>
+#10 0x560dd8feb24b <unknown>
+#11 0x560dd9077ac6 <unknown>
+#12 0x560dd9022cbf <unknown>
+#13 0x560dd9023a81 <unknown>
+#14 0x560dd9593a64 <unknown>
+#15 0x560dd9596951 <unknown>
+#16 0x560dd958021e <unknown>
+#17 0x560dd959751e <unknown>
+#18 0x560dd9566be0 <unknown>
+#19 0x560dd95ba9b8 <unknown>
+#20 0x560dd95bab88 <unknown>
+#21 0x560dd95cc4de <unknown>
+#22 0x7f4e6f69caa4 <unknown>
+#23 0x7f4e6f729c6c <unknown>
+
+
+
