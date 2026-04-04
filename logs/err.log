@@ -478,3 +478,72 @@ Stacktrace:
 
 
 
+[2026-04-04 12:03:32] autoupdate.fetch_smca
+ERROR: Message: timeout: Timed out receiving message from renderer: 28.327
+  (Session info: chrome=146.0.7680.164)
+Stacktrace:
+#0 0x55769750aa6a <unknown>
+#1 0x557696f19ab5 <unknown>
+#2 0x557696f013bb <unknown>
+#3 0x557696f010a4 <unknown>
+#4 0x557696efedeb <unknown>
+#5 0x557696eff76f <unknown>
+#6 0x557696f0e7a0 <unknown>
+#7 0x557696f284b7 <unknown>
+#8 0x557696f2efeb <unknown>
+#9 0x557696effebf <unknown>
+#10 0x557696f2824b <unknown>
+#11 0x557696fb4ac6 <unknown>
+#12 0x557696f5fcbf <unknown>
+#13 0x557696f60a81 <unknown>
+#14 0x5576974d0a64 <unknown>
+#15 0x5576974d3951 <unknown>
+#16 0x5576974bd21e <unknown>
+#17 0x5576974d451e <unknown>
+#18 0x5576974a3be0 <unknown>
+#19 0x5576974f79b8 <unknown>
+#20 0x5576974f7b88 <unknown>
+#21 0x5576975094de <unknown>
+#22 0x7f131ea9caa4 <unknown>
+#23 0x7f131eb29c6c <unknown>
+
+TRACEBACK:
+Traceback (most recent call last):
+  File "/home/runner/work/06E-Felicia.github.io/06E-Felicia.github.io/auto_update/autoupdate.py", line 115, in fetch_smca
+    driver.get(settings["source_url"])
+  File "/opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 466, in get
+    self.execute(Command.GET, {"url": url})
+  File "/opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 446, in execute
+    self.error_handler.check_response(response)
+  File "/opt/hostedtoolcache/Python/3.10.20/x64/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: timeout: Timed out receiving message from renderer: 28.327
+  (Session info: chrome=146.0.7680.164)
+Stacktrace:
+#0 0x55769750aa6a <unknown>
+#1 0x557696f19ab5 <unknown>
+#2 0x557696f013bb <unknown>
+#3 0x557696f010a4 <unknown>
+#4 0x557696efedeb <unknown>
+#5 0x557696eff76f <unknown>
+#6 0x557696f0e7a0 <unknown>
+#7 0x557696f284b7 <unknown>
+#8 0x557696f2efeb <unknown>
+#9 0x557696effebf <unknown>
+#10 0x557696f2824b <unknown>
+#11 0x557696fb4ac6 <unknown>
+#12 0x557696f5fcbf <unknown>
+#13 0x557696f60a81 <unknown>
+#14 0x5576974d0a64 <unknown>
+#15 0x5576974d3951 <unknown>
+#16 0x5576974bd21e <unknown>
+#17 0x5576974d451e <unknown>
+#18 0x5576974a3be0 <unknown>
+#19 0x5576974f79b8 <unknown>
+#20 0x5576974f7b88 <unknown>
+#21 0x5576975094de <unknown>
+#22 0x7f131ea9caa4 <unknown>
+#23 0x7f131eb29c6c <unknown>
+
+
+
