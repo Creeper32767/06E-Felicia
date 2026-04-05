@@ -37,7 +37,7 @@ jobs:
       - name: 获取天气数据更新
         continue-on-error: true
         run: |
-          python auto_update/autoupdate.py
+          python auto_update/updater.py
 
       - name: 提交并推送到仓库
         run: |

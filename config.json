@@ -17,31 +17,5 @@
         "title": "Storm Emergancy",
         "image": "assets/images/warnings/预警图.png",
         "message": "【深中气象】珠西强回波正在渡江。未来1h内我市将出现强雷雨天气，小时雨强20-40mm。"
-    },
-    "AUTOUPDATE_CONFIG": {
-        "source_url": "https://smca.fun/#/",
-        "wait_timeout": 120,
-        "time_prefix": "数据时间: ",
-        "wait_class_name": "stat-number",
-        "item_class_name": "stat-item",
-        "label_class_name": "stat-label",
-        "value_class_name": "stat-number",
-        "desc_class_name": "stat-description",
-        "chrome_args": [
-            "--headless",
-            "--no-sandbox",
-            "--disable-dev-shm-usage"
-        ],
-        "targets": {
-            "分钟气温": "t",
-            "最高气温": "th",
-            "最低气温": "tl",
-            "日雨量": "r_day",
-            "1h滑动雨量": "r_1h",
-            "海平面气压": "p"
-        }
-    },
-    "LOG_CONFIG": {
-        "error_log": "logs/err.log"
     }
 }
