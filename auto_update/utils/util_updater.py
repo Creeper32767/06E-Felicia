@@ -26,7 +26,7 @@ TARGETS = {
     "time": "更新时间"
 }
 HTTP_TIMEOUT = 15
-PAGE_TIMEOUT = 30
+PAGE_TIMEOUT = 120
 
 
 def _create_retry_session():
@@ -133,15 +133,11 @@ def fetch_live_data(logger):
         driver.set_script_timeout(PAGE_TIMEOUT)
         driver.get(DATA_SOURCE_URL)
         wait = WebDriverWait(driver, PAGE_TIMEOUT)
-        wait.until(lambda d: d.execute_script("document.readyState") == "complete")
-        wait.until(
-            EC.presence_of_element_located(
-                (By.CLASS_NAME, "stat-item")
-            )
-        )
+        wait.until(lambda d: d.execute_script("return document.readyState") == "complete")
+        wait.until(EC.presence_of_element_located((By.CLASS_NAME, "stat-item")))
 
         items = driver.find_elements(By.CLASS_NAME, "stat-item")
-        logger.log_error("autoupdate.fetch_live_data", f"Found {len(items)} stat items on page")
+        print(f"Found {len(items)} stat items on the page.")
         res = _extract_live_data(items, logger)
 
         if not res:
