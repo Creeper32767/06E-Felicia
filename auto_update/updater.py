@@ -13,6 +13,7 @@ def main():
             live_data = fetch_fallback_data(logging_service)
     except Exception as e:
         logging_service.log_error("autoupdate.main", str(e))
+        live_data = fetch_fallback_data(logging_service)
 
     # Update configuration with new data
     config_service.set_value("LIVE_DATA", live_data)
