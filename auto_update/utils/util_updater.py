@@ -16,7 +16,15 @@ __all__ = ["fetch_live_data", "fetch_fallback_data"]
 
 DATA_SOURCE_URL = "https://www.smca.fun/#/"
 FALLBACK_DATA_SOURCE_URL = "https://uapis.cn/api/v1/misc/weather?adcode=440300&extended=true&forecast=true"
-TARGETS = ["分钟气温", "最高气温", "最低气温", "日雨量", "1h滑动雨量", "海平面气压", "更新时间"]
+TARGETS = {
+    "t": "分钟气温",
+    "th": "最高气温",
+    "tl": "最低气温",
+    "r_day": "日雨量",
+    "r_1h": "1h滑动雨量",
+    "p": "海平面气压",
+    "time": "更新时间"
+}
 HTTP_TIMEOUT = 15
 PAGE_TIMEOUT = 30
 
@@ -44,17 +52,17 @@ def fetch_fallback_data(logger):
             response.raise_for_status()
             weather_data = response.json()
             return {
-                "分钟气温": weather_data.get("temperature", ""),
-                "最高气温": weather_data.get("temp_max", ""),
-                "最低气温": weather_data.get("temp_min", ""),
-                "日雨量": "-",
-                "1h滑动雨量": weather_data.get("precipitation", ""),
-                "海平面气压": weather_data.get("pressure", ""),
-                "更新时间": weather_data.get("report_time", "")
+                "t": weather_data.get("temperature", ""),
+                "th": weather_data.get("temp_max", ""),
+                "tl": weather_data.get("temp_min", ""),
+                "r_day": "---",
+                "r_1h": weather_data.get("precipitation", ""),
+                "p": weather_data.get("pressure", ""),
+                "time": weather_data.get("report_time", "")
             }
     except Exception as e:
         logger.log_error("autoupdate.fetch_fallback_data", str(e))
-    return {key: "-" for key in TARGETS}
+    return {key: "---" for key in TARGETS}
 
 
 def _safe_find_text(element, class_name):
@@ -66,20 +74,22 @@ def _safe_find_text(element, class_name):
 
 def _extract_live_data(items, logger):
     data = {}
-    remaining_targets = set(TARGETS)
+    label_to_key = {label: key for key, label in TARGETS.items()}
+    remaining_targets = set(TARGETS.keys())
 
     for item in items:
         try:
             label = _safe_find_text(item, "stat-label")
-            if not label or label not in remaining_targets:
+            target_key = label_to_key.get(label)
+            if not target_key or target_key not in remaining_targets:
                 continue
 
             value = _safe_find_text(item, "stat-value") or _safe_find_text(item, "stat-number")
             if not value:
                 continue
 
-            data[label] = value
-            remaining_targets.discard(label)
+            data[target_key] = value
+            remaining_targets.discard(target_key)
             if not remaining_targets:
                 break
         except Exception as e:
@@ -123,13 +133,15 @@ def fetch_live_data(logger):
         driver.set_script_timeout(PAGE_TIMEOUT)
         driver.get(DATA_SOURCE_URL)
         wait = WebDriverWait(driver, PAGE_TIMEOUT)
+        wait.until(lambda d: d.execute_script("document.readyState") == "complete")
         wait.until(
             EC.presence_of_element_located(
-                (By.CLASS_NAME, "stat-number")
+                (By.CLASS_NAME, "stat-item")
             )
         )
 
         items = driver.find_elements(By.CLASS_NAME, "stat-item")
+        logger.log_error("autoupdate.fetch_live_data", f"Found {len(items)} stat items on page")
         res = _extract_live_data(items, logger)
 
         if not res:

@@ -44,8 +44,8 @@ jobs:
           git config user.name "WeatherBot"
           git config user.email "bot@weather.com"
           git add config.json
-          if [ -f logs/err.log ]; then
-            git add logs/err.log
+          if [ -f logs/run.log ]; then
+            git add logs/run.log
           fi
           if git diff --cached --quiet; then
             echo "No changes to commit"

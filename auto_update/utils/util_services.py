@@ -7,7 +7,7 @@ __all__ = ["ConfigurationService", "LoggingService"]
 
 # config management and error logging utilities
 CONFIG_FILE = Path("config.json")
-DEFAULT_ERROR_LOG = Path("logs/err.log")
+DEFAULT_ERROR_LOG = Path("logs/run.log")
 
 
 class LoggingService:
