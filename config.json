@@ -19,9 +19,9 @@
         "bg": "assets/images/background.jpg"
     },
     "ALERT_CONFIG": {
-        "enabled": false,
-        "title": "Storm Watch",
+        "enabled": true,
+        "title": "Gale Warning",
         "image": "assets/images/warnings/预警图.png",
-        "message": "【深中气象】珠西强回波正在渡江。未来1h内我市将出现强雷雨天气，小时雨强20-40mm。"
+        "message": "【深中气象】在东路回流冷空气叠加泥岗东-西走廊狭管效应下，8日我校阵风可达5-6级。"
     }
 }
