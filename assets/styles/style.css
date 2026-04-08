@@ -734,7 +734,7 @@ body {
 
 /* 👈 左侧图片：占据一半空间 */
 .alert-image-side {
-    flex: 0 0 50%;
+    flex: 0 0 auto;
     /* 👈 核心修改：精准占据 50% */
     width: 50%;
     background-color: rgba(0, 0, 0, 0.2);
@@ -833,7 +833,7 @@ body {
 
     /* 图片在手机端占据 40% 高度 */
     .alert-image-side {
-        flex: 0 0 32vh;
+        flex: 0 0 auto;
         width: 100%;
         min-height: 180px;
         max-height: 300px;
