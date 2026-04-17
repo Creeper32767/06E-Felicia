@@ -19,9 +19,9 @@
         "bg": "assets/images/background.jpg"
     },
     "ALERT_CONFIG": {
-        "enabled": false,
-        "title": "Gale Warning",
+        "enabled": true,
+        "title": "Storm Watch",
         "image": "assets/images/warnings/预警图.png",
-        "message": "【深中气象】在东路回流冷空气叠加泥岗东-西走廊狭管效应下，8日我校阵风可达5-6级。"
+        "message": "【深中气象】粤西有飑线东移。预计中午前后我校可能有雷阵雨。"
     }
 }
