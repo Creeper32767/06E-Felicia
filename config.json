@@ -9,17 +9,17 @@
         "p": "1010.5hPa"
     },
     "MANUAL_CONFIG": {
-        "low": "24°C",
-        "high": "31°C",
-        "humidity": "潮湿",
-        "rainProb": "0mm",
+        "low": "19°C",
+        "high": "24°C",
+        "humidity": "舒适",
+        "rainProb": "大到暴雨",
         "wind": "3-4级",
-        "dir": "南风",
-        "icon": "assets/images/weather_icons/02.png",
+        "dir": "东北风",
+        "icon": "assets/images/weather_icons/10.png",
         "bg": "assets/images/background.jpg"
     },
     "ALERT_CONFIG": {
-        "enabled": true,
+        "enabled": false,
         "title": "Gale Warning",
         "image": "assets/images/background.jpg",
         "message": "【深中气象】受槽前南风输送影响，今天我校阵风可达6级以上。"
